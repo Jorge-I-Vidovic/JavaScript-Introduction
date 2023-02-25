@@ -6,10 +6,30 @@ boton.addEventListener('Click', ()=>{
 });
 
 if(Notification.permission == 'granted'){
-    new Notification('Esta es una notificación.',{
-        
-    })
+    new Notification('Esta es una notificación.');
 }
+
+function descargarNuevosClientes(){
+    return new Promise( resolve => {
+        console.log('Descargando clientes... espere...');
+
+        setTimeout( ()=> {
+            resolve('Los clientes fueron descargados.');
+        }, 5000);
+    });
+}
+
+async function app(){
+    try{
+        const result = await descargarNuevosClientes();
+        console.log(result);
+    } catch(error){
+        console.log(error);
+    }
+}
+
+app();
+
 //------------------------------------------------------------------------------------------------
 
 // POO
