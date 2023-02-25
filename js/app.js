@@ -33,3 +33,34 @@ const cliente1 = new Cliente('Jorge','Vidovic')
 
 console.log(producto2.formatearProducto() );
 console.log(cliente1.formatearCliente())
+
+
+// POO
+class Soldier {
+    constructor(nombre, apellido){
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
+}
+
+const AuthenticatedUser = new Promise( (resolve,reject)=>{
+    const auth = true;
+    if(auth){
+        resolve('Usuario autenticado.'); // El promise se cumple
+    } else{
+       reject('No se pudo iniciar sesión.');  // El promise no se cumple
+    }
+});
+
+AuthenticatedUser
+.then(function(result){
+    console.log(result);
+})
+.catch(function(error){
+    console.log(error);
+})
+
+// En los Promises existen 3 valores
+// - Pending: La promesa no se ha rechazado ni aceptado, se encuentra a la espera.
+// - Fullfilled: La promesa se cumplió.
+// - Rejected: la promesa fue rechazada.
