@@ -19,10 +19,26 @@ function descargarNuevosClientes(){
     });
 }
 
+function descargarUltimosPedidos(){
+    return new Promise( resolve => {
+        console.log('Descargando pedidos... espere...');
+
+        setTimeout( ()=> {
+            resolve('Los pedidos fueron descargados.');
+        }, 3000);
+    });
+}
+
 async function app(){
     try{
-        const result = await descargarNuevosClientes();
-        console.log(result);
+        //const result = await descargarNuevosClientes();
+        //const pedidos = await descargarUltimosPedidos();
+
+        const result = await Promise.all(
+            [descargarNuevosClientes(), 
+             descargarUltimosPedidos()]);
+        console.log(result[0]);
+        console.log(result[1]);
     } catch(error){
         console.log(error);
     }
@@ -98,3 +114,14 @@ AuthenticatedUser
 // - Pending: La promesa no se ha rechazado ni aceptado, se encuentra a la espera.
 // - Fullfilled: La promesa se cumplió.
 // - Rejected: la promesa fue rechazada.
+
+function obtenerEmpleados(){
+    const archive = 'empleados.json';
+    fetch(archive)
+        .then(result =>  result.json())
+        .then(data => {
+            const { employes } = data;
+            console.log(employes)
+        })
+}
+obtenerEmpleados();
